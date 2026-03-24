@@ -17,7 +17,7 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "CodeMentor Learn",
-  description: "Didaktisches KI-Assistenzsystem fuer die Programmierausbildung.",
+  description: "Didaktisches KI-Assistenzsystem für die Programmierausbildung.",
 };
 
 export default function RootLayout({

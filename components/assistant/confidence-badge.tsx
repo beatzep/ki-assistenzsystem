@@ -33,8 +33,8 @@ export function ConfidenceBadge({ level, hallucinationWarning }: ConfidenceBadge
         )}
         <p>
           {hallucinationWarning
-            ? "Moeglicherweise unsicher. Bitte Code testen und mit eigener Logik pruefen."
-            : "Relativ konsistente Analyse. Trotzdem vor Ausfuehrung validieren."}
+            ? "Möglicherweise unsicher. Bitte Code testen und mit eigener Logik prüfen."
+            : "Relativ konsistente Analyse. Trotzdem vor Ausführung validieren."}
         </p>
       </div>
     </div>

@@ -15,6 +15,8 @@ import {
 import { useWorkspaceStore } from "@/store/workspace-store";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
+import { signOut } from "@/app/actions/auth";
+import { useWorkspaceSession } from "@/components/auth/workspace-session-context";
 
 const navItems = [
   { href: "/workspace", label: "Learning Workspace", icon: Gauge },
@@ -27,6 +29,7 @@ const navItems = [
 export function SidebarNav() {
   const pathname = usePathname();
   const startNewSession = useWorkspaceStore((state) => state.startNewSession);
+  const session = useWorkspaceSession();
 
   return (
     <aside className="hidden w-72 flex-col border-r bg-card/70 p-5 backdrop-blur lg:flex">
@@ -66,14 +69,27 @@ export function SidebarNav() {
         })}
       </nav>
 
-      <div className="mt-auto rounded-xl border bg-background p-3">
-        <div className="mb-2 flex items-center gap-2 text-sm font-medium">
-          <ShieldCheck className="h-4 w-4 text-emerald-600" />
-          Privacy Badge
+      <div className="mt-auto space-y-3">
+        {session ? (
+          <div className="rounded-xl border bg-background p-3">
+            <p className="text-xs font-medium text-muted-foreground">Angemeldet als</p>
+            <p className="truncate text-sm font-medium">{session.email}</p>
+            <form action={signOut} className="mt-2">
+              <Button type="submit" variant="outline" size="sm" className="w-full rounded-xl">
+                Abmelden
+              </Button>
+            </form>
+          </div>
+        ) : null}
+        <div className="rounded-xl border bg-background p-3">
+          <div className="mb-2 flex items-center gap-2 text-sm font-medium">
+            <ShieldCheck className="h-4 w-4 text-emerald-600" />
+            Privacy Badge
+          </div>
+          <p className="text-xs text-muted-foreground">
+            Lokale Verarbeitung bevorzugt. Keine sensiblen Daten ohne Freigabe senden.
+          </p>
         </div>
-        <p className="text-xs text-muted-foreground">
-          Lokale Verarbeitung bevorzugt. Keine sensiblen Daten ohne Freigabe senden.
-        </p>
       </div>
     </aside>
   );

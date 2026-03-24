@@ -31,7 +31,7 @@ export default function HistoryPage() {
                 </p>
               </div>
               <button type="button" className="inline-flex items-center gap-1 text-sm font-medium text-primary">
-                Analyse oeffnen
+                Analyse öffnen
                 <ChevronRight className="h-4 w-4" />
               </button>
             </CardContent>

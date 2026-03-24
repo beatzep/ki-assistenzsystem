@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 import { FlaskConical, PlayCircle } from "lucide-react";
 
 import { starterSnippets } from "@/data/mock-data";
-import { languageLabels } from "@/lib/utils/language";
+import { languageLabels, monacoLanguageFor } from "@/lib/utils/language";
 import { useWorkspaceStore } from "@/store/workspace-store";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
@@ -84,12 +84,13 @@ export function EditorPanel() {
               }}
             >
               <SelectTrigger className="rounded-xl">
-                <SelectValue placeholder="Sprache waehlen" />
+                <SelectValue placeholder="Sprache wählen" />
               </SelectTrigger>
               <SelectContent>
                 <SelectItem value="java">Java</SelectItem>
                 <SelectItem value="python">Python</SelectItem>
                 <SelectItem value="javascript">JavaScript</SelectItem>
+                <SelectItem value="assembly">Assembly</SelectItem>
               </SelectContent>
             </Select>
 
@@ -121,19 +122,19 @@ export function EditorPanel() {
           <Input
             value={errorMessage}
             onChange={(event) => setErrorMessage(event.target.value)}
-            placeholder="Optionale Fehlermeldung einfuegen"
+            placeholder="Optionale Fehlermeldung einfügen"
             className="rounded-xl"
           />
         </CardHeader>
         <CardContent className="space-y-3">
           <div className="flex items-center gap-2 rounded-xl bg-muted px-3 py-2 text-sm text-muted-foreground">
             <FlaskConical className="h-4 w-4 text-primary" />
-            Aktive Sprache: {languageLabels[language]} - Demo laeuft mit didaktischer Mock-Analyse.
+            Aktive Sprache: {languageLabels[language]} – Analyse mit Mock-Fallback und optionalem LLM.
           </div>
           <div className="overflow-hidden rounded-xl border">
             <Editor
               height="420px"
-              language={language}
+              language={monacoLanguageFor(language)}
               value={code}
               onChange={(value) => setCode(value ?? "")}
               options={{

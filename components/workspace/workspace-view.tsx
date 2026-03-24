@@ -5,16 +5,19 @@ import { AlertTriangle, Lock, ShieldCheck } from "lucide-react";
 
 import { AssistantPanel } from "@/components/assistant/assistant-panel";
 import { EditorPanel } from "@/components/workspace/editor-panel";
+import { SyncProfileLanguage } from "@/components/workspace/sync-profile-language";
 import { Card, CardContent } from "@/components/ui/card";
 import { Switch } from "@/components/ui/switch";
 import { useWorkspaceStore } from "@/store/workspace-store";
+import type { SupportedLanguage } from "@/types/analysis";
 
-export function WorkspaceView() {
+export function WorkspaceView({ profileTargetLanguage }: { profileTargetLanguage?: SupportedLanguage }) {
   const safeLearningMode = useWorkspaceStore((state) => state.safeLearningMode);
   const setSafeLearningMode = useWorkspaceStore((state) => state.setSafeLearningMode);
 
   return (
     <div className="space-y-4">
+      {profileTargetLanguage ? <SyncProfileLanguage target={profileTargetLanguage} /> : null}
       <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="grid gap-4 xl:grid-cols-[1.65fr_1fr]">
         <EditorPanel />
         <AssistantPanel />
@@ -25,7 +28,7 @@ export function WorkspaceView() {
           <div className="space-y-1">
             <p className="text-sm font-medium text-amber-900">Vertrauens- und Sicherheitsbereich</p>
             <p className="text-xs text-amber-800">
-              Moeglicherweise unsicher - bitte vor Ausfuehrung testen. Keine sensiblen Daten ohne Freigabe senden.
+              Möglicherweise unsicher – bitte vor Ausführung testen. Keine sensiblen Daten ohne Freigabe senden.
             </p>
             <p className="flex items-center gap-1 text-xs text-amber-800">
               <ShieldCheck className="h-3.5 w-3.5" />
@@ -36,7 +39,7 @@ export function WorkspaceView() {
             <Lock className="h-4 w-4 text-amber-700" />
             <div className="text-xs">
               <p className="font-medium text-foreground">Sichere Lernhilfe</p>
-              <p className="text-muted-foreground">Direkte Loesung vermeiden</p>
+              <p className="text-muted-foreground">Direkte Lösung vermeiden</p>
             </div>
             <Switch checked={safeLearningMode} onCheckedChange={setSafeLearningMode} />
           </div>

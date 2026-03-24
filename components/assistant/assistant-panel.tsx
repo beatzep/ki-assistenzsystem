@@ -41,7 +41,7 @@ export function AssistantPanel() {
         <CardHeader className="space-y-4 pb-2">
           <SectionHeader
             title="Assistance Panel"
-            description="Diagnose, Konzept und Guided Hints statt direkter Komplettloesung."
+            description="Diagnose, Konzept und Guided Hints statt direkter Komplettlösung."
           />
           <ConfidenceBadge level={analysis.confidenceLevel} hallucinationWarning={analysis.hallucinationWarning} />
         </CardHeader>
@@ -60,7 +60,7 @@ export function AssistantPanel() {
             <div className="flex items-center justify-between">
               <p className="text-sm font-medium">Fragestrecke / Guided Hints</p>
               <Button size="sm" variant="secondary" onClick={revealNextHint}>
-                Naechsten Hinweis
+                Nächsten Hinweis
               </Button>
             </div>
             <div className="flex gap-2">
@@ -99,7 +99,7 @@ export function AssistantPanel() {
                 </p>
                 <p className="flex items-center gap-1">
                   <ShieldAlert className="h-3.5 w-3.5 text-violet-600" />
-                  Loesung selbst hergeleitet
+                  Lösung selbst hergeleitet
                 </p>
               </div>
             </CardContent>
@@ -113,7 +113,7 @@ export function AssistantPanel() {
               Vertrauenshinweis
             </p>
             <p>
-              Moeglicherweise unsicher. Bitte Code testen, Randfaelle pruefen und Annahmen hinterfragen. Antwort basiert
+              Möglicherweise unsicher. Bitte Code testen, Randfälle prüfen und Annahmen hinterfragen. Antwort basiert
               auf Heuristik und Modellannahmen.
             </p>
           </div>

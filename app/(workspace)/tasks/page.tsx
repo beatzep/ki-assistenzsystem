@@ -6,8 +6,8 @@ import { TaskCard } from "@/components/education/task-card";
 export default function TasksPage() {
   return (
     <AppShell
-      title="Aufgaben- und Uebungsmodus"
-      subtitle="Waehle eine Aufgabe und arbeite mit Lernbegleitung statt Loesungsausgabe."
+      title="Aufgaben- und Übungsmodus"
+      subtitle="Wähle eine Aufgabe und arbeite mit Lernbegleitung statt Lösungsausgabe."
     >
       <div className="space-y-4">
         <SectionHeader

@@ -1,5 +1,3 @@
-"use client";
-
 import type { ReactNode } from "react";
 import { Sparkles } from "lucide-react";
 
@@ -26,7 +24,7 @@ export function AppShell({ title, subtitle, children }: AppShellProps) {
             </div>
             <Badge className="gap-1 rounded-full bg-amber-100 text-amber-900 hover:bg-amber-100">
               <Sparkles className="h-3.5 w-3.5" />
-              Modellgestuetzte Heuristik
+              Modellgestützte Heuristik
             </Badge>
           </header>
           <main className="flex-1 p-4 sm:p-6">{children}</main>

@@ -15,7 +15,7 @@ const features = [
   },
   {
     title: "Schrittweise Hilfe",
-    description: "Guided Hints in drei Tiefenstufen statt sofortiger Komplettloesung.",
+    description: "Guided Hints in drei Tiefenstufen statt sofortiger Komplettlösung.",
     icon: BrainCircuit,
   },
   {
@@ -37,28 +37,31 @@ export default function MarketingPage() {
         <section className="rounded-3xl border bg-background/85 p-8 shadow-sm backdrop-blur sm:p-12">
           <p className="mb-3 inline-flex items-center gap-2 rounded-full bg-primary/10 px-3 py-1 text-xs font-medium text-primary">
             <Sparkles className="h-3.5 w-3.5" />
-            KI-gestuetzte Programmierausbildung
+            KI-gestützte Programmierausbildung
           </p>
           <h1 className="max-w-3xl text-3xl font-semibold tracking-tight sm:text-5xl">
-            CodeMentor Learn - das Lernstudio fuer <span className="text-primary">Verstehen statt Kopieren</span>
+            CodeMentor Learn – das Lernstudio für <span className="text-primary">Verstehen statt Kopieren</span>
           </h1>
           <p className="mt-4 max-w-2xl text-base text-muted-foreground sm:text-lg">
-            Ein didaktisches Assistenzsystem fuer Programmier-Anfaenger. Fokus auf Diagnose, Reflexion und
-            schrittweiser Selbstableitung statt stumpfer Loesungsausgabe.
+            Ein didaktisches Assistenzsystem für Programmier-Anfänger. Fokus auf Diagnose, Reflexion und
+            schrittweiser Selbstableitung statt stumpfer Lösungsausgabe.
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
-            <Link
-              href="/workspace"
-              className={cn(buttonVariants({ size: "lg" }), "rounded-xl")}
-            >
-              Workspace starten
+            <Link href="/register" className={cn(buttonVariants({ size: "lg" }), "rounded-xl")}>
+              Konto anlegen
               <ArrowRight className="h-4 w-4" />
             </Link>
             <Link
-              href="/tasks"
+              href="/login?next=/workspace"
               className={cn(buttonVariants({ size: "lg", variant: "outline" }), "rounded-xl")}
             >
-              Zum Uebungsmodus
+              Anmelden
+            </Link>
+            <Link
+              href="/login?next=/tasks"
+              className={cn(buttonVariants({ size: "lg", variant: "secondary" }), "rounded-xl")}
+            >
+              Zum Übungsmodus
             </Link>
           </div>
         </section>

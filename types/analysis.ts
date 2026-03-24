@@ -1,4 +1,6 @@
-export type SupportedLanguage = "java" | "python" | "javascript";
+import type { FocusLanguage } from "@/types/qualification-profile";
+
+export type SupportedLanguage = FocusLanguage;
 
 export type ConfidenceLevel = "low" | "medium" | "high";
 
@@ -25,4 +27,6 @@ export interface AnalyzePayload {
   language: SupportedLanguage;
   errorMessage?: string;
   avoidDirectSolution?: boolean;
+  /** Aus Supabase; für personalisierte Prompts (optional) */
+  qualificationProfile?: import("@/types/qualification-profile").QualificationProfile | null;
 }

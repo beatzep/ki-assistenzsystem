@@ -1,13 +1,16 @@
 import { z } from "zod";
 
-export const supportedLanguageSchema = z.enum(["java", "python", "javascript"]);
+export const supportedLanguageSchema = z.enum(["java", "python", "javascript", "assembly"]);
 
-export const analyzePayloadSchema = z.object({
+/** Nur Client-/API-Body — ohne Profil (Profil kommt serverseitig aus Supabase). */
+export const analyzeApiInputSchema = z.object({
   code: z.string().min(3, "Bitte gib etwas Code ein."),
   language: supportedLanguageSchema,
   errorMessage: z.string().max(500).optional(),
   avoidDirectSolution: z.boolean().optional().default(true),
 });
+
+export const analyzePayloadSchema = analyzeApiInputSchema;
 
 export const hintSchema = z.object({
   level: z.union([z.literal(1), z.literal(2), z.literal(3)]),

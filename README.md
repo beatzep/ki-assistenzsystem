@@ -1,18 +1,18 @@
 # CodeMentor Learn
 
-Didaktischer, KI-gestuetzter Coding-Assistent als Uni-Prototyp fuer das Modul "Agile Software-Entwicklung".
+Didaktischer, KI-gestützter Coding-Assistent als Uni-Prototyp für das Modul "Agile Software-Entwicklung".
 
 ## Projektidee
 
-CodeMentor Learn ist kein klassischer Chatbot, sondern ein Lernstudio fuer Programmier-Anfaenger:
+CodeMentor Learn ist kein klassischer Chatbot, sondern ein Lernstudio für Programmier-Anfänger:
 
-- Fehlerdiagnose statt sofortiger Komplettloesung
-- sokratische Rueckfragen und Reflexion
+- Fehlerdiagnose statt sofortiger Komplettlösung
+- sokratische Rückfragen und Reflexion
 - abgestufte Hilfen (Hinweis 1 bis 3)
 - sichtbarer Unsicherheits- und Halluzinationshinweis
 - Fokus auf "Verstehen statt Kopieren"
 
-## Featureuebersicht
+## Feature-Übersicht
 
 - Landing mit Nutzenversprechen und Feature Cards
 - Learning Workspace mit:
@@ -21,12 +21,13 @@ CodeMentor Learn ist kein klassischer Chatbot, sondern ein Lernstudio fuer Progr
   - Sprachauswahl (Java, Python, JavaScript)
   - Analyse-Button
   - Assistance Panel mit Diagnose, Konzept und Guided Hints
-- Aufgabenmodus mit didaktischen Uebungen
-- Konzepte- und Verlaufsscreens
-- Settings mit Sicherheits-/Datenschutzfokus
+- Aufgabenmodus mit didaktischen Übungen
+- Konzepte- und Verlaufs-Screens
+- Nutzerkonten (Supabase Auth) und Qualifikationsprofil (Onboarding + Settings)
+- Settings mit Sicherheits-/Datenschutzfokus und Profil-Pflege
 - Confidence Meter + Privacy Badge + Trust-Hinweise
 
-## Architekturueberblick
+## Architektur-Überblick
 
 ```text
 /app
@@ -57,7 +58,7 @@ CodeMentor Learn ist kein klassischer Chatbot, sondern ein Lernstudio fuer Progr
 - **LLM austauschbar:** `lib/llm/client.ts` ist als Adapter vorbereitet, aktuell mit Mock-Fallback.
 - **Validierung via Zod:** Request/Response-Schema in `lib/analysis/schema.ts`.
 - **UI-State via Zustand:** Session-, Editor- und Hint-State zentral im `workspace-store`.
-- **Designsystem:** shadcn/ui + Tailwind fuer konsistente, professionelle SaaS-Optik.
+- **Designsystem:** shadcn/ui + Tailwind für konsistente, professionelle SaaS-Optik.
 
 ## Repository-URL / Klonen
 
@@ -95,30 +96,42 @@ OPENAI_BASE_URL=https://api.openai.com/v1
 OPENAI_ENABLED=true
 ```
 
-Wenn `OPENAI_ENABLED=false` oder kein API-Key gesetzt ist, faellt die App automatisch auf die lokale Mock-Analyse zurueck.
+Wenn `OPENAI_ENABLED=false` oder kein API-Key gesetzt ist, fällt die App automatisch auf die lokale Mock-Analyse zurück.
+
+### Supabase (Accounts + Lernprofil)
+
+Optional für Registrierung, Login und persistentes Qualifikationsprofil. Ohne diese Variablen zeigt der Workspace einen kurzen Hinweis; Build und Landing funktionieren trotzdem.
+
+```bash
+NEXT_PUBLIC_SUPABASE_URL=https://<project>.supabase.co
+NEXT_PUBLIC_SUPABASE_ANON_KEY=<anon-key>
+NEXT_PUBLIC_APP_ORIGIN=http://localhost:3000
+```
+
+SQL für Tabelle `learner_profiles`, RLS und den Profil-Trigger nach User-Signup: siehe [`docs/supabase-schema.md`](docs/supabase-schema.md). In Supabase **Authentication → URL Configuration** Redirect-URLs (`/auth/callback`, lokale Origin) setzen.
 
 ## Demo-Flow
 
-1. ` /workspace` oeffnen
-2. Starter-Snippet ist vorausgefuellt
+1. `/workspace` öffnen
+2. Starter-Snippet ist vorausgefüllt
 3. `Analysieren` klicken
 4. Rechts erscheint didaktische Analyse
-5. Durch Hinweislevel klicken oder `Naechsten Hinweis` nutzen
+5. Durch Hinweislevel klicken oder `Nächsten Hinweis` nutzen
 6. Confidence, Reflexionsfragen und Vertrauenshinweise prüfen
 
-## Stellen fuer echte LLM-Anbindung
+## Stellen für echte LLM-Anbindung
 
-Fuer eine produktive OpenAI-/LLM-Integration muessen diese Dateien angepasst werden:
+Für eine produktive OpenAI-/LLM-Integration müssen diese Dateien angepasst werden:
 
 - `lib/llm/client.ts` (API-Call, Auth, Provider)
 - `lib/llm/prompts.ts` (didaktische Promptsteuerung)
 - `lib/analysis/analyzeCode.ts` (Fallback-/Routing-Strategie)
 - optional `app/api/analyze/route.ts` (Rate Limits, Logging, Safety Policies)
 
-## Zukuenftige Erweiterungen
+## Zukünftige Erweiterungen
 
 - echte Nutzerkonten und Sessions
-- Persistenz fuer Verlauf/Aufgabenfortschritt
+- Persistenz für Verlauf/Aufgabenfortschritt
 - automatische Testfall-Generierung
 - kontextuelle Quellen-/Doku-Verlinkung je Konzept
 - adaptives Hinting basierend auf Lernstand
