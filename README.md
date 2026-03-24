@@ -102,13 +102,29 @@ Wenn `OPENAI_ENABLED=false` oder kein API-Key gesetzt ist, fällt die App automa
 
 Optional für Registrierung, Login und persistentes Qualifikationsprofil. Ohne diese Variablen zeigt der Workspace einen kurzen Hinweis; Build und Landing funktionieren trotzdem.
 
+**Umgebungsvariablen** (in `.env.local`, Werte aus Cloud-Dashboard oder lokal aus `supabase status`):
+
 ```bash
 NEXT_PUBLIC_SUPABASE_URL=https://<project>.supabase.co
+# lokal z. B. http://127.0.0.1:55421 — exakt wie in der CLI-Ausgabe
 NEXT_PUBLIC_SUPABASE_ANON_KEY=<anon-key>
 NEXT_PUBLIC_APP_ORIGIN=http://localhost:3000
 ```
 
-SQL für Tabelle `learner_profiles`, RLS und den Profil-Trigger nach User-Signup: siehe [`docs/supabase-schema.md`](docs/supabase-schema.md). In Supabase **Authentication → URL Configuration** Redirect-URLs (`/auth/callback`, lokale Origin) setzen.
+**Hosted (Supabase Cloud):** Dashboard → **Project Settings → API** → Project URL und `anon` `public` Key.
+
+**Lokal mit Supabase CLI:** [CLI installieren](https://supabase.com/docs/guides/cli), **Docker Desktop** starten, im Projektverzeichnis:
+
+```bash
+supabase start
+supabase status   # API URL und anon key für .env.local
+```
+
+Die Datei [`supabase/config.toml`](supabase/config.toml) legt die **nach außen gemappten Ports** fest (im Repo von den Standard-5432x-Ports abweichend, damit parallel ein zweiter lokaler Stack laufen kann). Nach Änderungen an den Ports: `supabase stop --no-backup` und erneut `supabase start`.
+
+**Schema:** SQL für `learner_profiles`, RLS und Trigger: [`docs/supabase-schema.md`](docs/supabase-schema.md) — im **SQL Editor** ausführen (Cloud-Dashboard oder lokales Supabase Studio, URL steht bei `supabase status`).
+
+**Redirects:** In Supabase **Authentication → URL Configuration** die Site-URL und Redirect-URLs setzen (z. B. `http://localhost:3000/auth/callback`).
 
 ## Demo-Flow
 
@@ -130,8 +146,7 @@ Für eine produktive OpenAI-/LLM-Integration müssen diese Dateien angepasst wer
 
 ## Zukünftige Erweiterungen
 
-- echte Nutzerkonten und Sessions
-- Persistenz für Verlauf/Aufgabenfortschritt
+- Persistenz für Verlauf/Aufgabenfortschritt (über das Supabase-Profil hinaus)
 - automatische Testfall-Generierung
 - kontextuelle Quellen-/Doku-Verlinkung je Konzept
 - adaptives Hinting basierend auf Lernstand
