@@ -59,6 +59,19 @@ CodeMentor Learn ist kein klassischer Chatbot, sondern ein Lernstudio fuer Progr
 - **UI-State via Zustand:** Session-, Editor- und Hint-State zentral im `workspace-store`.
 - **Designsystem:** shadcn/ui + Tailwind fuer konsistente, professionelle SaaS-Optik.
 
+## Repository-URL / Klonen
+
+- **Repository:** [https://github.com/beatzep/ki-assistenzsystem](https://github.com/beatzep/ki-assistenzsystem)
+
+Lokal kopieren und ins Projektverzeichnis wechseln:
+
+```bash
+git clone https://github.com/beatzep/ki-assistenzsystem.git
+cd ki-assistenzsystem
+```
+
+Danach wie unter [Startanleitung](#startanleitung) mit `npm install` und `npm run dev` fortfahren.
+
 ## Startanleitung
 
 ```bash
