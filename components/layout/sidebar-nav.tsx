@@ -7,6 +7,7 @@ import {
   FileStack,
   Gauge,
   History,
+  Map,
   PlusCircle,
   Settings,
   ShieldCheck,
@@ -23,6 +24,7 @@ const navItems = [
   { href: "/tasks", label: "Meine Aufgaben", icon: FileStack },
   { href: "/history", label: "Verlauf", icon: History },
   { href: "/concepts", label: "Konzepte", icon: BookOpen },
+  { href: "/journey", label: "Learning Journey", icon: Map },
   { href: "/settings", label: "Einstellungen", icon: Settings },
 ];
 
